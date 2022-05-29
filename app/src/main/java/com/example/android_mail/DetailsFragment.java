@@ -10,6 +10,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Calendar;
+
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -26,6 +29,9 @@ public class DetailsFragment extends Fragment {
     FloatingActionButton btn;
     ImageButton btnReply;
     EditText editText;
+    TextView singleReply;
+
+    MailListFragment mailListFragment;
 
     public DetailsFragment() {
 
@@ -48,11 +54,12 @@ public class DetailsFragment extends Fragment {
         imgAvatar = view.findViewById(R.id.imgAvatar);
         btnReply = view.findViewById(R.id.btnReply);
         editText = view.findViewById(R.id.editText);
+        singleReply = view.findViewById(R.id.singleReply);
 
         view.setVisibility(View.INVISIBLE);
     }
 
-    public void setDetails(Mail mail) {
+    public void setDetails(Mail mail, int positionNumber) {
         tvTitle.setText(mail.getSubject());
         tvContent.setText(mail.getContent());
         tvName.setText(mail.getName());
@@ -60,7 +67,11 @@ public class DetailsFragment extends Fragment {
         imgAvatar.setImageResource(mail.getAvatar());
         btnReply.setOnClickListener(view -> {
             if (String.valueOf(editText.getText()).length() != 0) {
-                Log.i("reply", String.valueOf(editText.getText()));
+                singleReply.setText(String.valueOf(editText.getText()));
+                MailListFragment.setMailReply(positionNumber);
+                //mail.insertReplys(new Mail("me", 0, mail.subject, String.valueOf(editText.getText()), Calendar.getInstance().getTime().toString()));
+                Log.i("insert reply", String.valueOf(editText.getText()));
+
             }
         });
 

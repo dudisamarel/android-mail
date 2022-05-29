@@ -1,6 +1,7 @@
 package com.example.android_mail;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,21 +19,22 @@ public class MailListFragment extends ListFragment implements AdapterView.OnItem
 
     List<Mail> mails;
     Fragment mailDetails;
+    MailsAdapter adapter;
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        ((SelectionListener) getActivity()).onItemSeleceted(mails.get(position));
+        ((SelectionListener) getActivity()).onItemSeleceted(mails.get(position), position);
     }
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 
-        ((SelectionListener) getActivity()).onItemSeleceted(mails.get(position));
+        ((SelectionListener) getActivity()).onItemSeleceted(mails.get(position),position);
     }
 
     public interface SelectionListener{
-        void onItemSeleceted(Mail mail);
+        void onItemSeleceted(Mail mail, int position);
     }
 
     @Override
@@ -47,10 +49,11 @@ public class MailListFragment extends ListFragment implements AdapterView.OnItem
         super.onActivityCreated(savedInstanceState);
 
         mails = generateMails();
-        MailsAdapter adapter = new MailsAdapter(mails, (SelectionListener) getActivity());
+        adapter = new MailsAdapter(mails, (SelectionListener) getActivity());
         setListAdapter(adapter);
         getListView().setOnItemClickListener(this);
     }
+
 
     private List<Mail> generateMails() {
         List<Mail> mails = new ArrayList<>();
@@ -63,5 +66,9 @@ public class MailListFragment extends ListFragment implements AdapterView.OnItem
         mails.add(new Mail("Yossi Yossieli", R.drawable.ic_launcher_background, "Bills", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.", "6.6.1996"));
 
         return mails;
+    }
+
+    public static void setMailReply(int position) {
+        Log.i("inMailLIstFragment", String.valueOf(position));
     }
 }
