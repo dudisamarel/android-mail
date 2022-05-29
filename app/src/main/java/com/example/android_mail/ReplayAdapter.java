@@ -56,10 +56,8 @@ public class ReplayAdapter extends RecyclerView.Adapter<ReplayAdapter.myViewHold
         }
 
         public void bind (String reply) {
-//            tvName.setText(mail.getName());
-//            imgAvatar.setImageResource(mail.getAvatar());
+
             tvContent.setText(reply);
-//            tvDate.setText(mail.getDate());
         }
     }
 }

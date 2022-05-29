@@ -73,16 +73,12 @@ public class DetailsFragment extends Fragment {
         ((ReplayAdapter) replyLayout.getAdapter()).dataset.addAll(MailListStatic.getMailList().get(positionNumber).getReplys());
         replyLayout.getAdapter().notifyDataSetChanged();
 
-        //replyLayout.inflate(R.layout.reply_details, mail);
 
         btnReply.setOnClickListener(view -> {
             if (String.valueOf(editText.getText()).length() != 0) {
-                //singleReply.setText(String.valueOf(editText.getText()));
-                //MailListStatic.getMailList().get(positionNumber).insertReplys(new Mail("me", 0, mail.subject, String.valueOf(editText.getText()), Calendar.getInstance().getTime().toString()));
                 MailListStatic.getMailList().get(positionNumber).insertReplys(String.valueOf(editText.getText()));
-                //mail.insertReplys(String.valueOf(editText.getText()));
+
                 replyLayout.getAdapter().notifyDataSetChanged();
-                //mail.insertReplys(new Mail("me", 0, mail.subject, String.valueOf(editText.getText()), Calendar.getInstance().getTime().toString()));
             }
         });
 

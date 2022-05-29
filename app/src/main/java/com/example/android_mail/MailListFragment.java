@@ -71,14 +71,4 @@ public class MailListFragment extends ListFragment implements AdapterView.OnItem
                 adapter.notifyDataSetChanged();
     }
 
-
-
-//    private List<Mail> generateMails() {
-//
-//        return MailListStatic.getMailList();
-//    }
-
-//    public void setMailReply(Mail mail, int position) {
-//        mails.get(position).insertReplys(mail);
-//    }
 }
