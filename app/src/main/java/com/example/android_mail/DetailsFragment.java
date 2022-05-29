@@ -68,10 +68,9 @@ public class DetailsFragment extends Fragment {
         btnReply.setOnClickListener(view -> {
             if (String.valueOf(editText.getText()).length() != 0) {
                 singleReply.setText(String.valueOf(editText.getText()));
-                MailListFragment.setMailReply(positionNumber);
+                MailListFragment.setMailReply(new Mail("me", 0, mail.subject, String.valueOf(editText.getText()), Calendar.getInstance().getTime().toString()), positionNumber);
                 //mail.insertReplys(new Mail("me", 0, mail.subject, String.valueOf(editText.getText()), Calendar.getInstance().getTime().toString()));
                 Log.i("insert reply", String.valueOf(editText.getText()));
-
             }
         });
 

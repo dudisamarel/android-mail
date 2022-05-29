@@ -13,11 +13,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.ListFragment;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class MailListFragment extends ListFragment implements AdapterView.OnItemClickListener {
 
-    List<Mail> mails;
+    static List<Mail> mails;
     Fragment mailDetails;
     MailsAdapter adapter;
 
@@ -68,7 +69,7 @@ public class MailListFragment extends ListFragment implements AdapterView.OnItem
         return mails;
     }
 
-    public static void setMailReply(int position) {
-        Log.i("inMailLIstFragment", String.valueOf(position));
+    public static void setMailReply(Mail mail, int position) {
+        mails.get(position).insertReplys(mail);
     }
 }
