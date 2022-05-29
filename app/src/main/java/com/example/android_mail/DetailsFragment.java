@@ -1,9 +1,12 @@
 package com.example.android_mail;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,7 +24,8 @@ public class DetailsFragment extends Fragment {
     ImageView imgAvatar;
     TextView tvDate;
     FloatingActionButton btn;
-
+    ImageButton btnReply;
+    EditText editText;
 
     public DetailsFragment() {
 
@@ -42,7 +46,8 @@ public class DetailsFragment extends Fragment {
         tvName = view.findViewById(R.id.tvName);
         tvDate = view.findViewById(R.id.tvDate);
         imgAvatar = view.findViewById(R.id.imgAvatar);
-
+        btnReply = view.findViewById(R.id.btnReply);
+        editText = view.findViewById(R.id.editText);
 
         view.setVisibility(View.INVISIBLE);
     }
@@ -53,6 +58,12 @@ public class DetailsFragment extends Fragment {
         tvName.setText(mail.getName());
         tvDate.setText(mail.getDate());
         imgAvatar.setImageResource(mail.getAvatar());
+        btnReply.setOnClickListener(view -> {
+            if (String.valueOf(editText.getText()).length() != 0) {
+                Log.i("reply", String.valueOf(editText.getText()));
+            }
+        });
+
 
         if (!getView().isShown())
             getView().setVisibility(View.VISIBLE);
