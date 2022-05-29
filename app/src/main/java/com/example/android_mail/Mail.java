@@ -9,7 +9,7 @@ public class Mail implements Serializable {
     String subject;
     String content;
     String date;
-    ArrayList<Mail> replay;
+    ArrayList<String> replay;
 
     public Mail(String name, int avatar, String subject, String content, String date) {
         this.name = name;
@@ -17,7 +17,7 @@ public class Mail implements Serializable {
         this.subject = subject;
         this.content = content;
         this.date = date;
-        this.replay = new ArrayList<Mail>();
+        this.replay = new ArrayList<String>();
     }
 
     public String getName() {
@@ -40,7 +40,7 @@ public class Mail implements Serializable {
         return date;
     }
 
-    public void insertReplys(Mail replyMail) {this.replay.add(replyMail);}
+    public void insertReplys(String reply) {this.replay.add(reply);}
 
-    public ArrayList<Mail> getReplys() {return this.replay;}
+    public ArrayList<String> getReplys() {return this.replay;}
 }

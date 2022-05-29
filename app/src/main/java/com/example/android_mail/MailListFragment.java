@@ -61,7 +61,7 @@ public class MailListFragment extends ListFragment implements AdapterView.OnItem
 //        return MailListStatic.getMailList();
 //    }
 
-    public void setMailReply(Mail mail, int position) {
-        mails.get(position).insertReplys(mail);
-    }
+//    public void setMailReply(Mail mail, int position) {
+//        mails.get(position).insertReplys(mail);
+//    }
 }
