@@ -1,6 +1,7 @@
 package com.example.android_mail;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +15,9 @@ import androidx.fragment.app.ListFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MailListFragment extends ListFragment implements AdapterView.OnItemClickListener {
-
-    List<Mail> mails;
+public class MailListFragment extends ListFragment implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
+    static MailsAdapter adapter;
+    static List<Mail> mails;
     Fragment mailDetails;
 
     @Override
@@ -30,6 +31,14 @@ public class MailListFragment extends ListFragment implements AdapterView.OnItem
 
         ((SelectionListener) getActivity()).onItemSeleceted(mails.get(position));
     }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        mails.remove(mails.get(position));
+       adapter.notifyDataSetChanged();
+        return true;
+    }
+
 
     public interface SelectionListener{
         void onItemSeleceted(Mail mail);
@@ -47,10 +56,19 @@ public class MailListFragment extends ListFragment implements AdapterView.OnItem
         super.onActivityCreated(savedInstanceState);
 
         mails = generateMails();
-        MailsAdapter adapter = new MailsAdapter(mails, (SelectionListener) getActivity());
+        adapter = new MailsAdapter(mails, (SelectionListener) getActivity());
         setListAdapter(adapter);
         getListView().setOnItemClickListener(this);
+        getListView().setOnItemLongClickListener(this);
+
     }
+
+    public static void insertMail(Mail mail){
+                mails.add(0,mail);
+                adapter.notifyDataSetChanged();
+    }
+
+
 
     private List<Mail> generateMails() {
         List<Mail> mails = new ArrayList<>();
