@@ -9,4 +9,11 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_create_mail">CreateMail</string>
+    <string name="content">Content</string>
+    <string name="from_place_holder">From</string>
+    <string name="to_place_holder">To</string>
+    <string name="subject_place_holder">Subject</string>
+    <string name="create_button_text">Send</string>
+    <string name="new_mail_button_text">New Mail</string>
 </resources>

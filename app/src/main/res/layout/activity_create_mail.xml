@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:weightSum="6"
+    tools:context=".CreateMailActivity">
+
+
+
+    <EditText
+        android:hint="@string/from_place_holder"
+        android:id="@+id/et_from"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/bg_round"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:padding="10dp"
+        />
+    <EditText
+        android:hint="@string/to_place_holder"
+        android:id="@+id/et_to"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/bg_round"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:padding="10dp"
+        />
+    <EditText
+        android:hint="@string/subject_place_holder"
+        android:id="@+id/et_subject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/bg_round"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:padding="10dp"
+        />
+
+    <EditText
+        android:gravity="top"
+        android:id="@+id/et_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="3"
+        android:background="@drawable/bg_round"
+        android:hint="@string/content"
+        android:padding="10dp" />
+
+    <Button
+        android:backgroundTint="@color/dark_gray"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/create_button_text"
+        android:textAllCaps="false"
+        android:textSize="25sp"
+        android:layout_marginBottom="56dp"
+        android:textColor="@color/white"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingStart="25dp"
+        android:paddingEnd="25dp"
+        android:id="@+id/btSend"
+        />
+
+
+</LinearLayout>
+
