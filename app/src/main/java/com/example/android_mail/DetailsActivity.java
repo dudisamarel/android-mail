@@ -12,6 +12,6 @@ public class DetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_details);
 
         DetailsFragment detailsFragment = (DetailsFragment) getSupportFragmentManager().findFragmentById(R.id.detailsFragment);
-        detailsFragment.setDetails((Mail) getIntent().getExtras().get("position"));
+        detailsFragment.setDetails((Mail) getIntent().getExtras().get("position"),  (int) getIntent().getExtras().get("positionNumber"));
     }
 }

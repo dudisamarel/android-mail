@@ -1,6 +1,7 @@
 package com.example.android_mail;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Mail implements Serializable {
     String name;
@@ -8,6 +9,7 @@ public class Mail implements Serializable {
     String subject;
     String content;
     String date;
+    ArrayList<Mail> replay;
 
     public Mail(String name, int avatar, String subject, String content, String date) {
         this.name = name;
@@ -15,6 +17,7 @@ public class Mail implements Serializable {
         this.subject = subject;
         this.content = content;
         this.date = date;
+        this.replay = new ArrayList<Mail>();
     }
 
     public String getName() {
@@ -36,4 +39,8 @@ public class Mail implements Serializable {
     public String getDate() {
         return date;
     }
+
+    public void insertReplys(Mail replyMail) {this.replay.add(replyMail);}
+
+    public ArrayList<Mail> getReplys() {return this.replay;}
 }

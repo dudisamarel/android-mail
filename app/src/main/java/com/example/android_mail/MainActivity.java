@@ -30,16 +30,17 @@ public class MainActivity extends AppCompatActivity implements MailListFragment.
     }
 
     @Override
-    public void onItemSeleceted(Mail mail) {
+    public void onItemSeleceted(Mail mail, int position) {
 
-        if (detailsFragment == null){
+        if (detailsFragment == null) {
             Intent intent = new Intent();
             intent.setClass(this, DetailsActivity.class);
             intent.putExtra("position", mail);
+            intent.putExtra("positionNumber", position);
             startActivity(intent);
         }
         else {
-            detailsFragment.setDetails(mail);
+            detailsFragment.setDetails(mail, position);
         }
 
     }

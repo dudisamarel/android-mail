@@ -1,15 +1,22 @@
 package com.example.android_mail;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.Calendar;
+
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -21,7 +28,11 @@ public class DetailsFragment extends Fragment {
     ImageView imgAvatar;
     TextView tvDate;
     FloatingActionButton btn;
+    ImageButton btnReply;
+    EditText editText;
+    RecyclerView replyLayout;
 
+    MailListFragment mailListFragment;
 
     public DetailsFragment() {
 
@@ -42,17 +53,33 @@ public class DetailsFragment extends Fragment {
         tvName = view.findViewById(R.id.tvName);
         tvDate = view.findViewById(R.id.tvDate);
         imgAvatar = view.findViewById(R.id.imgAvatar);
-
+        btnReply = view.findViewById(R.id.btnReply);
+        editText = view.findViewById(R.id.editText);
+        replyLayout = view.findViewById(R.id.replies);
+        replyLayout.setAdapter(new ReplayAdapter(this.getContext()));
 
         view.setVisibility(View.INVISIBLE);
     }
 
-    public void setDetails(Mail mail) {
+    public void setDetails(Mail mail, int positionNumber) {
         tvTitle.setText(mail.getSubject());
         tvContent.setText(mail.getContent());
         tvName.setText(mail.getName());
         tvDate.setText(mail.getDate());
         imgAvatar.setImageResource(mail.getAvatar());
+        ((ReplayAdapter) replyLayout.getAdapter()).dataset = mail.getReplys();
+
+        //replyLayout.inflate(R.layout.reply_details, mail);
+
+        btnReply.setOnClickListener(view -> {
+            if (String.valueOf(editText.getText()).length() != 0) {
+                //singleReply.setText(String.valueOf(editText.getText()));
+                MailListStatic.getMailList().get(positionNumber).insertReplys(new Mail("me", 0, mail.subject, String.valueOf(editText.getText()), Calendar.getInstance().getTime().toString()));
+                //mail.insertReplys(new Mail("me", 0, mail.subject, String.valueOf(editText.getText()), Calendar.getInstance().getTime().toString()));
+
+            }
+        });
+
 
         if (!getView().isShown())
             getView().setVisibility(View.VISIBLE);
