@@ -16,6 +16,7 @@ import java.util.Calendar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -29,7 +30,7 @@ public class DetailsFragment extends Fragment {
     FloatingActionButton btn;
     ImageButton btnReply;
     EditText editText;
-    TextView singleReply;
+    RecyclerView replyLayout;
 
     MailListFragment mailListFragment;
 
@@ -54,7 +55,8 @@ public class DetailsFragment extends Fragment {
         imgAvatar = view.findViewById(R.id.imgAvatar);
         btnReply = view.findViewById(R.id.btnReply);
         editText = view.findViewById(R.id.editText);
-        singleReply = view.findViewById(R.id.singleReply);
+        replyLayout = view.findViewById(R.id.replies);
+        replyLayout.setAdapter(new ReplayAdapter(this.getContext()));
 
         view.setVisibility(View.INVISIBLE);
     }
@@ -65,12 +67,16 @@ public class DetailsFragment extends Fragment {
         tvName.setText(mail.getName());
         tvDate.setText(mail.getDate());
         imgAvatar.setImageResource(mail.getAvatar());
+        ((ReplayAdapter) replyLayout.getAdapter()).dataset = mail.getReplys();
+
+        //replyLayout.inflate(R.layout.reply_details, mail);
+
         btnReply.setOnClickListener(view -> {
             if (String.valueOf(editText.getText()).length() != 0) {
-                singleReply.setText(String.valueOf(editText.getText()));
-                MailListFragment.setMailReply(new Mail("me", 0, mail.subject, String.valueOf(editText.getText()), Calendar.getInstance().getTime().toString()), positionNumber);
+                //singleReply.setText(String.valueOf(editText.getText()));
+                MailListStatic.getMailList().get(positionNumber).insertReplys(new Mail("me", 0, mail.subject, String.valueOf(editText.getText()), Calendar.getInstance().getTime().toString()));
                 //mail.insertReplys(new Mail("me", 0, mail.subject, String.valueOf(editText.getText()), Calendar.getInstance().getTime().toString()));
-                Log.i("insert reply", String.valueOf(editText.getText()));
+
             }
         });
 
