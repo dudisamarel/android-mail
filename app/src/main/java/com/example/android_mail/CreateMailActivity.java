@@ -27,7 +27,18 @@ Button btSend;
 
         btSend.setOnClickListener(view -> {
             String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-            Mail newMail = new Mail(etFrom.getText().toString(),R.drawable.ic_launcher_background,etSubject.getText().toString(),etContent.getText().toString(),currentDate);
+            int rnd = (int) Math.round(Math.random() *3),avatar;
+            switch(rnd) {
+                case 1:
+                    avatar = R.mipmap.icon_1;
+                    break;
+                case 2:
+                    avatar = R.mipmap.icon_2;
+                    break;
+                default:
+                    avatar = R.mipmap.icon_3;
+            }
+            Mail newMail = new Mail(etFrom.getText().toString(),avatar,etSubject.getText().toString(),etContent.getText().toString(),currentDate);
             MailListFragment.insertMail(newMail);
             Intent intent = new Intent();
             intent.setClass(this, MainActivity.class);
