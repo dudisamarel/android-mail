@@ -4,37 +4,34 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class ReplayAdapter extends RecyclerView.Adapter<ReplayAdapter.viewHolder> {
-    public ArrayList<Mail> dataset;
+public class ReplayAdapter extends RecyclerView.Adapter<ReplayAdapter.myViewHolder> {
+    public ArrayList<String> dataset;
     private LayoutInflater mInflater;
 
     public ReplayAdapter( Context context) {
-
-        this.mInflater = LayoutInflater.from(context);;
+        dataset = new ArrayList<String>();
+//        this.mInflater = LayoutInflater.from(context);
     }
 
     @NonNull
     @Override
-    public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.reply_details, parent, false);
-        return new viewHolder(view);
+    public myViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        View view = layoutInflater.inflate(R.layout.reply_details, parent, false);
+        return new myViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull viewHolder holder, int position) {
-
-    }
-
-
-    @Override
-    public long getItemId(int i) {
-        return 0;
+    public void onBindViewHolder(@NonNull myViewHolder holder, int position) {
+        holder.bind(dataset.get(position));
     }
 
     @Override
@@ -42,11 +39,25 @@ public class ReplayAdapter extends RecyclerView.Adapter<ReplayAdapter.viewHolder
         return dataset.size();
     }
 
-    public class viewHolder extends RecyclerView.ViewHolder {
+    public class myViewHolder extends RecyclerView.ViewHolder {
+
+        ImageView imgAvatar;
+        TextView tvName;
+        TextView tvContent;
+        TextView tvDate;
 
 
-         public viewHolder(@NonNull View itemView) {
-            super(itemView);
+        public myViewHolder(View view) {
+            super(view);
+            imgAvatar = view.findViewById(R.id.imgAvatar);
+            tvName = view.findViewById(R.id.tvName);
+            tvContent = view.findViewById(R.id.tvContent);
+            tvDate = view.findViewById(R.id.tvDate);
+        }
+
+        public void bind (String reply) {
+
+            tvContent.setText(reply);
         }
     }
 }
